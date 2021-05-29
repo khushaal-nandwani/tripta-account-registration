@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from .models import TForm
+from config.settings import ADMIN_EMAIL
+from django.core.mail import send_mail
 
 
 def input_form_view(request):
@@ -12,41 +14,27 @@ def input_form_view(request):
         tform.city = request.POST.get('city')
         tform.state = request.POST.get('state')
         tform.address = request.POST.get('address')
-        tform.save()
 
-        return render(request, 'success.html')
-
-    return render(request, 'signup.html')
-
-    #
-    # submitbutton= request.POST.get("submit")
-    # form = InputFormRevamped(request.POST or None)
-    # if form.is_valid():
-    #     email = form.cleaned_data.get('email')
-    #     client_code = form.cleaned_data.get('client_code')
-    #     company_name = form.cleaned_data.get('company_name')
-    #     mobile_no = form.cleaned_data.get('mobile_no')
-    #     city = form.cleaned_data.get('city')
-    #     state = form.cleaned_data.get('state')
-    #     address = form.cleaned_data.get('address')
-    #     print('hello')
-    #     form.save(commit=False)
-    #
-    #     #
-    #     # everything = [email, client_code, company_name, mobile_no, city, state, address]
-    #     #
-    #     # # context= {'form': form, 'email': email, 'city': city,
-    #     # #           'submitbutton': submitbutton, 'address': address}\
-    #     #
-    #     # data_string = str(email) + ' , '
-    #     # for x in everything[1:]:
-    #     #     data_string += str(x) + ' , '
-    #     # data_string += '\n'
-    #     # print(data_string)
-    #     #
-    #     # f = open('data.txt', 'a')
-    #     # f.write(data_string)
-    #     # f.close()
-    #
-    # return render(request, 'success.html', context)
+        if TForm.objects.filter(mobile_no=tform.mobile_no).first() is not None:
+            # means the mobile number already exists go for otp
+            pass
+        else:
+            mail_body = f"Hello, " \
+                        f"\n A user has requested to create an account. " \
+                        f"Following are the details. Please verify and take further steps. " \
+                        f"\n Email: {tform.email} " \
+                        f"\n Client Code: {tform.client_code} " \
+                        f"\n Company Name: {tform.company_name}" \
+                        f"\n Mobile Number: {tform.mobile_no}" \
+                        f"\n City: {tform.city}" \
+                        f"\n State: {tform.state}" \
+                        f"\n Address: {tform.address}"
+            send_mail(
+                "Account Registration Requested",
+                mail_body,
+                'admin@tripta.com',
+                [ADMIN_EMAIL],
+            )
+            tform.save()
+            return render(request, 'success_check.html')
 

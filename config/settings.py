@@ -9,24 +9,25 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+from environs import Env
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+env = Env()
+env.read_env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-llzpayffx2k163@bso_p7xd^k9_mlt46xn(j)w#806z6a%z^=1'
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -96,10 +97,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.dj_db_url("DATABASE_URL")
 }
 
 
@@ -148,3 +146,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'success'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+DEFAULT_FROM_EMAIL = 'nandwanikhushaal@gmail.com'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_HOST_USER = 'postmaster@sandboxfb88fbcd0c3e40008753504ede9f44f4.mailgun.org'
+EMAIL_HOST_PASSWORD = '12a3e32c0e8e92d51e7570b4a4cfa857-6ae2ecad-f3e4224c'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
+ADMIN_EMAIL = 'nandwanikhushaal@gmail.com'
+
+# Port: 587 (recommended)
+# Username: postmaster@sandboxfb88fbcd0c3e40008753504ede9f44f4.mailgun.org
+# Default password: 12a3e32c0e8e92d51e7570b4a4cfa857-6ae2ecad-f3e4224c

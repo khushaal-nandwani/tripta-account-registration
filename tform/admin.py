@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import TForm
+from .models import TForm, Email
 from .forms import InputFormRevamped
 
 
@@ -11,4 +11,5 @@ class CustomFormAdmin(TForm):
 
 admin.site.register(CustomFormAdmin)
 admin.site.register(TForm)
+admin.site.register(Email)
 

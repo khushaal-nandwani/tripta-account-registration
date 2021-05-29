@@ -1,38 +1,68 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Sign up</h2>
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email"> <br>
+    <div class="jumbotron">
+        <h1 class="display-4 text-center">TRIPTA</h1> <br>
+        <h2 class="display-5 text-center">Account Registration</h2> <br>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" class="form-control"
+                           aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
 
-        <label for="client_code">Client Code</label>
-        <input type="number" name="client_code" id="client_code"> <br>
+                <div class="form-group col">
+                    <label for="client_code">Client Code</label>
+                    <input type="number" name="client_code" id="client_code"
+                           class="form-control" placeholder="Enter your Client Code">
+                </div>
+            </div>
 
-        <label for="company_name">Company Name</label>
-        <input type="text" name="company_name" id="company_name"> <br>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="company_name">Company Name</label>
+                    <input type="text" name="company_name" id="company_name"
+                           class="form-control" placeholder="Your company's name">
+                </div>
+                <div class="form-group col">
+                    <label for="mobile_no">Mobile No.</label>
+                    <input type="number" name="mobile_no" id="mobile_no"
+                           placeholder="Your mobile number" class="form-control">
+                </div>
+            </div>
 
-        <label for="mobile_no">Mobile No.</label>
-        <input type="number" name="mobile_no" id="mobile_no"> <br>
+            <div class="form-row">
+                <div class="form-group col">
+                    <label for="city">City</label>
+                    <input type="text" name="city" id="city" class="form-control" placeholder="Your city">
+                </div>
 
-        <label for="city">City</label>
-        <input type="text" name="city" id="city"> <br>
+                <div class="form-group col">
+                    <label for="state">State</label>
+                    <select class=form-control id="state" name="state">
+                        <option value="Gujarat">Gujarat</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                    </select>
 
+                </div>
+            </div>
 
-        <label for="state">State</label>
-        <select id="state" name="state">
-            <option value="'gujarat">Gujarat</option>
-            <option value="maharashtra">Maharashtra</option>
-        </select>
-        <br>
+            <div class="form-group">
+                <label for="address"> Address   </label>
+                <textarea class="form-control" name="address">
+                </textarea>
 
-        <label for="address"> Address</label>
-        <textarea name="address" rows="10" cols="20">
-        </textarea>
+            </div>
+            <center>
+                <button class="btn btn-primary" type="submit" name="submit" value="Submit">Sign up</button>
+            </center>
 
-        <input type="submit" value="Submit">
-        <button type="submit" name="submit" value="Submit">Sign up</button>
-    </form>
+        </form>
+
+    </div>
+
 
 {% endblock %}
