@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Sign up</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email"> <br>
+
+        <label for="client_code">Client Code</label>
+        <input type="number" name="client_code" id="client_code"> <br>
+
+        <label for="company_name">Company Name</label>
+        <input type="text" name="company_name" id="company_name"> <br>
+
+        <label for="mobile_no">Mobile No.</label>
+        <input type="number" name="mobile_no" id="mobile_no"> <br>
+
+        <label for="city">City</label>
+        <input type="text" name="city" id="city"> <br>
+
+
+        <label for="state">State</label>
+        <select id="state" name="state">
+            <option value="'gujarat">Gujarat</option>
+            <option value="maharashtra">Maharashtra</option>
+        </select>
+        <br>
+
+        <label for="address"> Address</label>
+        <textarea name="address" rows="10" cols="20">
+        </textarea>
+
+        <input type="submit" value="Submit">
+        <button type="submit" name="submit" value="Submit">Sign up</button>
+    </form>
+
+{% endblock %}

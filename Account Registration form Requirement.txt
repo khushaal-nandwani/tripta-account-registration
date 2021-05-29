@@ -1,0 +1,6 @@
+Date : 21-05-2021
+-----------------
+1.Crate an account registration form take reference of Account Registration.png
+2.Check whether mobile no is present in our database or not.
+3.If mobile number if present then send OTP and create an account other wise give message to user e.g. 'Mobile is not registred'
+4.Send details of account by email to admin for approval of this account.
