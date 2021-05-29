@@ -10,7 +10,7 @@ class TForm(models.Model):
     state = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
-        return self.client_code
+        return str(self.client_code)
 
 
 class Email(models.Model):
