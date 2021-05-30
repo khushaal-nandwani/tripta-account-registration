@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'corsheaders',
+    'drf_yasg',
 
     # Local
     'tform',
