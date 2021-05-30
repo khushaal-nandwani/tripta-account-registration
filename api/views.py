@@ -20,6 +20,6 @@ class TFormCreate(generics.ListCreateAPIView):
     serializer_class = TFormSerializer
 
 
-class AdminEmail(generics.UpdateAPIView):
+class AdminEmail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Email.objects.all()
     serializer_class = EmailSerializer
